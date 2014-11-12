@@ -11,6 +11,7 @@ import time
 import datetime
 import pyodbc
 import win32com.client
+
 from BeautifulSoup import BeautifulSoup
 #from bs4 import BeautifulSoup
 headers = {
@@ -25,6 +26,7 @@ FilePath = 'D:\\Crawler\\'
 connStr = 'DRIVER={SQL Server};SERVER=localhost;DATABASE=url_src;UID=sa;PWD=P@ssw0rd'
 connStr_sis = 'DRIVER={SQL Server};SERVER=localhost;DATABASE=THESIS;UID=sa;PWD=P@ssw0rd'
 connStr_ado = 'Provider=SQLNCLI11.1;Data Source=(local);Initial Catalog=url_src;User ID=sa;Password=P@ssw0rd;' #%('','url_src' ,'sa', 'P@ssw0rd')
+connStr_ado = 'Provider=SQLNCLI11.1;Persist Security Info=False;User ID=sa;Password=P@ssw0rd;Initial Catalog=THESIS;Data Source=(local);'
 #取得最大頁數
 #intGetMaxPage = 20
 
@@ -80,33 +82,32 @@ def getpageContext(soup,page_url):
         #f.writelines(page_url + '|||' + txtDate.text + '|||'+ txtTopic.text + '|||' + txtArticle.text + '|||' + txtContext.text + "\n")
         txtX = page_url + '|||' + dt.strftime('%Y%m%d%H%M%S') + '|||'+ txtTopic.text + '|||' + txtArticle.text + '|||' + txtContext + "\n"
 
-        conn_ado = win32com.client.Dispatch(r'ADODB.Connection') 
+        #connado = win32com.client.Dispatch(r'ADODB.Connection') 
 
-        conn_ado.open(connStr_ado)
+        #DSN = 'Provider=SQLNCLI11.1;Integrated Security="";Persist Security Info=False;User ID=sa;Password=P@ssw0rd;Initial Catalog=THESIS;Data Source=(local);'
 
+        #connado.open(DSN)
+        
+        #conn = pyodbc.connect(connStr)
+        #strSQL ="insert into url_src..url (url) values (?)"
+        #cursor = conn.cursor()
+        #cnt = cursor.execute(strSQL ,page_url).rowcount
+        #cursor.commit() 
+        #if cnt > 0 :
+        #    strSQL ="select urlid from url_src..url where url= ? "
+        #    cursor = conn.cursor()
+        #    urlid = cursor.execute(strSQL ,page_url).fetchone()[0]
 
+        #    conn_sis = pyodbc.connect(connStr_sis)            
 
-
-        conn = pyodbc.connect(connStr)
-        strSQL ="insert into url_src..url (url) values (?)"
-        cursor = conn.cursor()
-        cnt = cursor.execute(strSQL ,page_url).rowcount
-        cursor.commit() 
-        if cnt > 0 :
-            strSQL ="select urlid from url_src..url where url= ? "
-            cursor = conn.cursor()
-            urlid = cursor.execute(strSQL ,page_url).fetchone()[0]
-
-            conn_sis = pyodbc.connect(connStr_sis)            
-
-            strSQL ="insert into thesis..data_src ( urlid ,url_date ,topic ,author ,context_data) values (?,?,?,?,?)"
-            #strSQL ="insert into thesis..data_src ( urlid ) values ("+ str(urlid) +")"
-            cursor = conn_sis.cursor()
-            cnt = cursor.execute(strSQL ,urlid,dt.strftime('%Y%m%d%H%M%S') ,txtTopic.text ,txtArticle.text , txtContext ).rowcount
-            #cnt = cursor.execute(strSQL  ).rowcount
-            cursor.commit() 
-            conn_sis.close()
-            conn.close()
+        #    strSQL ="insert into thesis..data_src ( urlid ,url_date ,topic ,author ,context_data) values (?,?,?,?,?)"
+        #    #strSQL ="insert into thesis..data_src ( urlid ) values ("+ str(urlid) +")"
+        #    cursor = conn_sis.cursor()
+        #    cnt = cursor.execute(strSQL ,urlid,dt.strftime('%Y%m%d%H%M%S') ,txtTopic.text ,txtArticle.text , txtContext ).rowcount
+        #    #cnt = cursor.execute(strSQL  ).rowcount
+        #    cursor.commit() 
+        #    conn_sis.close()
+        #    conn.close()
             
         txtReturn += txtX
     except:
@@ -129,21 +130,23 @@ def contextPageUrl(soup,page_url):
             url = k.get('href')
             page_url = homeUrl + url
 
-            # viery url 
+            
+            ## viery url 
+            #DSN = 'Provider=SQLNCLI11.1;Integrated Security="";Persist Security Info=False;User ID=sa;Password=P@ssw0rd;Initial Catalog=THESIS;Data Source=(local);'
 
-            conn_ado = win32com.client.Dispatch(r'ADODB.Connection') 
-            conn_ado.open(connStr_ado)
+            #conn_ado = win32com.client.Dispatch(r'ADODB.Connection')
+            #conn_ado.open(DSN)
 
 
-            conn = pyodbc.connect(connStr)
-            strSQL ="select count(*) from url where url = ? "
-            cursor = conn.cursor()
-            count = cursor.execute(strSQL ,page_url).fetchone()[0]
+            #conn = pyodbc.connect(connStr)
+            #strSQL ="select count(*) from url where url = ? "
+            #cursor = conn.cursor()
+            #count = cursor.execute(strSQL ,page_url).fetchone()[0]
 
-            if count > 0 :
-                conn.close()
-                continue
-
+            #if count > 0 :
+            #    conn.close()
+            #    continue
+            
             resp = urllib2.urlopen(page_url , timeout=10)
             realsock = resp.fp._sock.fp._sock
             soup = BeautifulSoup(resp)
@@ -152,7 +155,7 @@ def contextPageUrl(soup,page_url):
             f.writelines(txtWrite)
             realsock.close() 
             resp.close()
-            conn.close()
+            #conn.close()
         except:
             type, value, tb = sys.exc_info()
             print "Unexpected error:", type
