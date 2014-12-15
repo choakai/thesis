@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3e6457c3-d1a5-4504-958d-c41a16300346</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>callCKIPClient.py</StartupFile>
+    <StartupFile>parseFileToSql.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

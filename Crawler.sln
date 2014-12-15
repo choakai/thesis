@@ -7,6 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Crawler", "Crawler\Crawler.
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL", "ETL\ETL.dtproj", "{654082EC-3D2C-4CA6-8264-4ACEB0C04B3D}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Crawler3.4", "Crawler3.4\Crawler3.4.pyproj", "{1DF708CD-FDA2-425B-9728-8A1494036A30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,9 @@ Global
 		{654082EC-3D2C-4CA6-8264-4ACEB0C04B3D}.Development|Any CPU.Build.0 = Development
 		{654082EC-3D2C-4CA6-8264-4ACEB0C04B3D}.Release|Any CPU.ActiveCfg = Development
 		{654082EC-3D2C-4CA6-8264-4ACEB0C04B3D}.Release|Any CPU.Build.0 = Development
+		{1DF708CD-FDA2-425B-9728-8A1494036A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF708CD-FDA2-425B-9728-8A1494036A30}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF708CD-FDA2-425B-9728-8A1494036A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
