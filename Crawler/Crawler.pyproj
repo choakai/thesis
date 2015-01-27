@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3e6457c3-d1a5-4504-958d-c41a16300346</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>parseFileToSql.py</StartupFile>
+    <StartupFile>Crawler_PPT_Politic_step1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,6 +29,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Crawler_Appledaily_Politics.py" />
+    <Compile Include="Crawler_PPT_Politic_step3.py" />
+    <Compile Include="Crawler_PPT_Politic_step1.py" />
     <Compile Include="Crawler_PPT_Politic.py" />
     <Compile Include="Crawler_Mobile_News.py" />
     <Compile Include="parseFileToSql.py">
